@@ -54,17 +54,17 @@ public class UserController {
 
     @PutMapping("/{id}")
     @ApiOperation(value = "Update an existing user")
-    public void update(
+    public ResponseEntity<Result> update(
             @ApiParam(value = "User Id to Update the details", required = true) @PathVariable Long id,
             @ApiParam(value = "Updated User object", required = true) @RequestBody User user) {
         logger.info("Updating the user details for user ID: {}", id);
-        userService.update(id, user);
+        return new ResponseEntity<>(userService.update(id, user), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
     @ApiOperation(value = "Delete an existing user")
-    public void delete(@ApiParam(value = "Book Id to delete the data", required = true) @PathVariable Long id) {
+    public ResponseEntity<Result> delete(@ApiParam(value = "Book Id to delete the data", required = true) @PathVariable Long id) {
         logger.info("Deleting the user from the system: {}", id);
-        userService.delete(id);
+        return new ResponseEntity<>(userService.delete(id), HttpStatus.NO_CONTENT);
     }
 }

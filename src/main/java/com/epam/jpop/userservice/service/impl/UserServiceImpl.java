@@ -52,18 +52,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void update(Long id, User user) {
+    public Result update(Long id, User user) {
         if (!user.getId().equals(id))
             throw new UserIdMismatchException();
 
         verifyAndThrowExceptionIfUserNotPresent(id);
         userRepository.save(prepareUserEntity(user));
+        return new Result(id);
     }
 
     @Override
-    public void delete(Long id) {
+    public Result delete(Long id) {
         verifyAndThrowExceptionIfUserNotPresent(id);
         userRepository.deleteById(id);
+        return new Result(id);
     }
 
     private com.epam.jpop.userservice.entity.User prepareUserEntity(User user) {

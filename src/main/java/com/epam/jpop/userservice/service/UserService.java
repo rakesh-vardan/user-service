@@ -13,8 +13,8 @@ public interface UserService {
 
     User get(Long id);
 
-    void update(Long id, User user);
+    Result update(Long id, User user);
 
-    void delete(Long id);
+    Result delete(Long id);
 
 }
