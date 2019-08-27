@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet author="Rakesh_Budugu" id="add-sequence-for-user-id">
+        <createSequence sequenceName="user_id_seq"/>
+    </changeSet>
+    <changeSet author="Rakesh_Budugu" id="add-table-uset">
+        <createTable tableName="user">
+            <column name="id" type="BIGSERIAL" defaultValueSequenceNext="user_id_seq">
+                <constraints primaryKey="true" primaryKeyName="user_pkey"/>
+            </column>
+            <column name="user_name" type="VARCHAR(80)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role" type="VARCHAR(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="VARCHAR(30)"/>
+            <column name="phone_no" type="VARCHAR(30)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Rakesh_Budugu" id="add-index-for-user-id">
+        <createIndex indexName="idx_user"
+                     tableName="user"
+                     unique="true">
+            <column name="id" type="BIGSERIAL"/>
+        </createIndex>
+    </changeSet>
+</databaseChangeLog>

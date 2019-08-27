@@ -1,0 +1,52 @@
+databaseChangeLog:
+- changeSet:
+    id: add-sequence-for-user-id
+    author: Rakesh_Budugu
+    objectQuotingStrategy: LEGACY
+    changes:
+    - createSequence:
+        sequenceName: user_id_seq
+- changeSet:
+    id: add-table-user
+    author: Rakesh_Budugu
+    objectQuotingStrategy: LEGACY
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              primaryKey: true
+              primaryKeyName: user_pkey
+            defaultValueSequenceNext: user_id_seq
+            name: id
+            type: BIGSERIAL
+        - column:
+            constraints:
+              nullable: false
+            name: user_name
+            type: VARCHAR(80)
+        - column:
+            constraints:
+              nullable: false
+            name: role
+            type: VARCHAR(10)
+        - column:
+            name: email
+            type: VARCHAR(30)
+        - column:
+            name: phone_no
+            type: VARCHAR(30)
+        tableName: user
+- changeSet:
+    id: add-index-for-user-id
+    author: Rakesh_Budugu
+    objectQuotingStrategy: LEGACY
+    changes:
+    - createIndex:
+        columns:
+        - column:
+            name: id
+        indexName: idx_user
+        tableName: user
+        unique: true
+
