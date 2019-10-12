@@ -7,6 +7,8 @@ spring:
     password: start123
     url: jdbc:postgresql://3.18.104.249:5432/postgres?currentSchema=users
     username: postgres
+    validation-query: select 1
+    test-on-borrow: true
   jpa:
     properties:
       hibernate:
@@ -19,3 +21,4 @@ spring:
     enabled: true
     defaultSchema: users
     liquibaseSchema: users
+
