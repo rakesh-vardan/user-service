@@ -62,7 +62,7 @@ public class UserControllerTest {
     public void testUserList() {
         Mockito.when(userService.list()).thenReturn(users);
 
-        ResponseEntity<Object> response = userController.list();
+        ResponseEntity<Object> response = userController.getAllUsers();
         List<User> userListFromResponse = (List<User>) response.getBody();
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals("Rakesh Vardan", userListFromResponse.get(0).getName());

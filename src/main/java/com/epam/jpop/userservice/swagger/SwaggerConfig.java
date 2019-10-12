@@ -32,7 +32,7 @@ public class SwaggerConfig {
                 "This is a collection of all API's for User Service designed as part of JPoP",
                 "V1.0",
                 "Terms of Service",
-                new Contact("Rakesh Vardan", "www.rakesh.epam.com", "rakesh_budugu@epam.com"),
+                new Contact("Rakesh Vardan", "www.rakesh-epam.com", "rakesh_budugu@epam.com"),
                 "Apache License Version 2.0", "https://www.apache.org/licenses/LICENSE-2.0", Collections.emptyList());
     }
 }

@@ -34,21 +34,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User get(Long id) {
-        User user = new User();
         com.epam.jpop.userservice.entity.User userEntity = userRepository.findById(id)
                 .orElseThrow(UserNotFoundException::new);
-
-        user.setId(userEntity.getId());
-        user.setName(userEntity.getName());
-        user.setRole(userEntity.getRole());
-
-        Optional<String> email = Optional.ofNullable(userEntity.getEmail());
-        email.ifPresent(user::setEmail);
-
-        Optional<String> phone = Optional.ofNullable(userEntity.getPhoneNumber());
-        phone.ifPresent(user::setPhoneNumber);
-
-        return user;
+        return getUserFromEntity(userEntity);
     }
 
     @Override
@@ -81,5 +69,19 @@ public class UserServiceImpl implements UserService {
 
     private void verifyAndThrowExceptionIfUserNotPresent(Long id) {
         userRepository.findById(id).orElseThrow(UserNotFoundException::new);
+    }
+
+    private User getUserFromEntity(com.epam.jpop.userservice.entity.User userEntity) {
+        User user = new User();
+        user.setId(userEntity.getId());
+        user.setName(userEntity.getName());
+        user.setRole(userEntity.getRole());
+
+        Optional<String> email = Optional.ofNullable(userEntity.getEmail());
+        email.ifPresent(user::setEmail);
+
+        Optional<String> phone = Optional.ofNullable(userEntity.getPhoneNumber());
+        phone.ifPresent(user::setPhoneNumber);
+        return user;
     }
 }
