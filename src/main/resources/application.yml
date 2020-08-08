@@ -4,9 +4,9 @@ spring:
   application:
     name: user-service
   datasource:
-    password: start123
-    url: jdbc:postgresql://3.18.104.249:5432/postgres?currentSchema=users
-    username: postgres
+    password: ${SPRING_DATASOURCE_PASSWORD}
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
     validation-query: select 1
     test-on-borrow: true
   jpa:
@@ -17,8 +17,9 @@ spring:
             non_contextual_creation: true
         temp:
           use_jdbc_metadata_defaults: false
+    jpa:
+      database-platform: ${SPRING_JPA_DATABASE-PLATFORM}
   liquibase:
     enabled: true
     defaultSchema: users
     liquibaseSchema: users
-
