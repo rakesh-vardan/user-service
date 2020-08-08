@@ -23,3 +23,10 @@ spring:
     enabled: true
     defaultSchema: users
     liquibaseSchema: users
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URL:http://localhost:8761}/eureka/
+    eureka-server-port: 8761
+    register-with-eureka: true
+    fetch-registry: true
